@@ -5,26 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Casino Spin & Earn</title>
     
-    <!-- Telegram Ad SDK Loader -->
-    <script src='//libtl.com/sdk.js' data-zone='11055053' data-sdk='show_11055053'></script>
-    <script>
-        show_11055053({
-          type: 'inApp',
-          inAppSettings: {
-            frequency: 2,
-            capping: 0.1,
-            interval: 30,
-            timeout: 5,
-            everyPage: false
-          }
-        });
-    </script>
+    <!-- Telegram Ad SDK Loader - Updated with New Zone ID -->
+    <script src='//libtl.com/sdk.js' data-zone='11086478' data-sdk='show_11086478'></script>
 
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: radial-gradient(circle, #1f003c, #070014);
-            font-family: 'Segoe UI', Arial, sans-serif;
+            background: radial-gradient(circle at center, #2e0854, #0a0118);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -35,55 +23,57 @@
             padding: 20px 0;
         }
         
-        /* ড্যাশবোর্ড */
+        /* প্রিমিয়াম গ্লাস ড্যাশবোর্ড */
         .header-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 90%;
-            max-width: 400px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            backdrop-filter: blur(10px);
+            max-width: 420px;
+            background: rgba(255, 255, 255, 0.07);
+            padding: 14px 22px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             margin-bottom: 20px;
         }
-        .logo { font-size: 18px; font-weight: bold; color: #ffd700; text-shadow: 0 0 10px #ffd700; }
-        .coin-box { background: #000; padding: 6px 15px; border-radius: 20px; border: 2px solid #ffd700; font-weight: bold; color: #ffcc00; }
+        .logo { font-size: 20px; font-weight: 800; color: #ffd700; text-shadow: 0 0 12px rgba(255, 215, 0, 0.6); letter-spacing: 1px; }
+        .coin-box { background: linear-gradient(135deg, #000, #15002a); padding: 8px 18px; border-radius: 25px; border: 2px solid #ffd700; font-weight: bold; color: #ffcc00; box-shadow: inset 0 0 10px rgba(255,215,0,0.3); }
 
         .game-container { position: relative; display: flex; flex-direction: column; align-items: center; }
         
-        /* হুইল বা চাকা */
+        /* থ্রিডি ইফেক্ট হুইল */
         .wheel-outer {
             width: 330px;
             height: 330px;
             border: 12px solid #ffd700;
             border-radius: 50%;
             position: relative;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4), inset 0 0 20px #000;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5), inset 0 0 30px #000, 0 15px 35px rgba(0,0,0,0.7);
             overflow: hidden;
+            background: #000;
         }
         .pointer {
             position: absolute;
-            top: -22px;
+            top: -18px;
             left: 50%;
             transform: translateX(-50%);
             width: 0; height: 0;
-            border-left: 16px solid transparent;
-            border-right: 16px solid transparent;
-            border-top: 32px solid #ff0055;
-            z-index: 10;
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.6));
+            border-left: 18px solid transparent;
+            border-right: 18px solid transparent;
+            border-top: 36px solid #ff0055;
+            z-index: 12;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
         }
         .wheel {
             width: 100%; height: 100%;
             border-radius: 50%;
             position: relative;
-            transition: transform 4.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: transform 5s cubic-bezier(0.2, 0.8, 0.1, 1);
         }
 
-        /* চাকার ভেতরের স্লাইস ও টেক্সট ডিজাইন */
+        /* চাকার স্লাইস */
         .slice {
             position: absolute;
             width: 50%; height: 50%;
@@ -95,80 +85,132 @@
         }
         .slice span {
             position: absolute;
-            left: 40px; top: 30px;
-            transform: rotate(60deg);
-            font-weight: bold;
-            font-size: 13px;
-            text-shadow: 1px 1px 3px #000;
-            white-space: nowrap;
+            left: 35px; top: 40px;
+            transform: rotate(30deg);
+            font-weight: 900;
+            font-size: 14px;
+            text-shadow: 2px 2px 4px #000;
+            color: #fff;
         }
-        /* স্লাইসের ট্রায়াঙ্গেল শেপ ও কালার */
-        .s1 { transform: rotate(0deg) skewY(30deg); background: #d50000; }       /* লাল */
-        .s2 { transform: rotate(60deg) skewY(30deg); background: #1a237e; }     /* নীল */
-        .s3 { transform: rotate(120deg) skewY(30deg); background: #ffaa00; }    /* হলুদ */
-        .s4 { transform: rotate(180deg) skewY(30deg); background: #ffffff; color: #000; } /* সাদা */
-        .s4 span { text-shadow: none; }
-        .s5 { transform: rotate(240deg) skewY(30deg); background: #00c853; }    /* সবুজ */
-        .s6 { transform: rotate(300deg) skewY(30deg); background: #aa00ff; }    /* বেগুনি */
+        
+        /* ব্যালেন্সড ক্যাসিনো মাল্টিপ্লায়ার */
+        .s1 { transform: rotate(0deg) skewY(30deg); background: #d50000; }       /* লাল (x0) */
+        .s2 { transform: rotate(60deg) skewY(30deg); background: #aa00ff; }     /* বেগুনি (x0.5) */
+        .s3 { transform: rotate(120deg) skewY(30deg); background: #00c853; }    /* সবুজ (x5) */
+        .s4 { transform: rotate(180deg) skewY(30deg); background: #555555; }    /* ধূসর (x0) */
+        .s5 { transform: rotate(240deg) skewY(30deg); background: #ffaa00; }    /* হলুদ (x2) */
+        .s6 { transform: rotate(300deg) skewY(30deg); background: #1a237e; }    /* নীল (x1) */
 
         .center-pin {
-            position: absolute; width: 30px; height: 30px; background: #ffd700;
+            position: absolute; width: 36px; height: 36px; background: radial-gradient(circle, #fff, #ffd700);
             border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px #000; z-index: 5; border: 2px solid #fff;
+            box-shadow: 0 0 15px rgba(0,0,0,0.8), 0 0 10px #ffd700; z-index: 5; border: 3px solid #000;
         }
 
-        /* বেটিং কন্ট্রোল */
-        .bet-container {
+        /* প্রফেশনাল বেট বক্স */
+        .bet-trigger-box {
             margin-top: 20px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,255,255,0.05));
+            padding: 12px 35px;
+            border-radius: 30px;
+            border: 2px dashed #ffd700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffd700;
+            transition: 0.2s;
+            text-shadow: 0 0 5px rgba(255,215,0,0.3);
+        }
+        .bet-trigger-box:hover { transform: scale(1.05); background: rgba(255,215,0,0.2); }
+
+        /* হোম স্ক্রিন ডেইলি বোনাস প্যানেল */
+        .home-daily-box {
+            width: 90%;
+            max-width: 340px;
+            margin-top: 15px;
+            background: rgba(0, 176, 255, 0.1);
+            border: 1px solid rgba(0, 176, 255, 0.4);
+            border-radius: 20px;
+            padding: 12px 20px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            background: rgba(255,255,255,0.08);
-            padding: 8px 15px;
-            border-radius: 25px;
-            gap: 15px;
-            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 4px 15px rgba(0,176,255,0.15);
         }
-        .bet-btn {
-            background: #ffd700; border: none; width: 30px; height: 30px;
-            border-radius: 50%; font-weight: bold; font-size: 18px; cursor: pointer; color: #000;
+        .daily-text { text-align: left; }
+        .daily-title { font-weight: bold; font-size: 14px; color: #fff; }
+        .daily-reward-val { font-size: 12px; color: #00e5ff; font-weight: bold; }
+        .home-claim-btn {
+            background: linear-gradient(45deg, #00b0ff, #00e5ff); color: #000;
+            border: none; padding: 8px 18px; font-size: 13px; font-weight: bold;
+            border-radius: 20px; cursor: pointer; transition: 0.2s;
         }
-        #betDisplay { font-size: 18px; font-weight: bold; color: #ffd700; min-width: 40px; text-align: center; }
+        .home-claim-btn:disabled { background: #333 !important; color: #777 !important; cursor: not-allowed; }
 
         /* বাটন গ্রুপ */
-        .btn-group { display: flex; gap: 15px; margin-top: 20px; }
+        .btn-group { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; width: 90%; max-width: 340px; }
+        .row-btns { display: flex; gap: 12px; width: 100%; }
         .action-btn {
-            padding: 12px 35px; font-size: 16px; font-weight: bold; border: none;
-            border-radius: 25px; cursor: pointer; text-transform: uppercase; transition: 0.2s;
+            flex: 1; padding: 14px; font-size: 16px; font-weight: bold; border: none;
+            border-radius: 30px; cursor: pointer; text-transform: uppercase; transition: 0.3s;
+            text-align: center;
         }
-        .spin-btn { background: linear-gradient(45deg, #ffd700, #ff9900); color: #000; box-shadow: 0 5px 15px rgba(255,153,0,0.4); }
-        .withdraw-btn { background: linear-gradient(45deg, #00c853, #b2ff59); color: #000; box-shadow: 0 5px 15px rgba(0,200,83,0.4); }
-        .action-btn:disabled { background: #444 !important; color: #888 !important; box-shadow: none !important; cursor: not-allowed; }
+        .spin-btn { background: linear-gradient(45deg, #ffd700, #ff6600); color: #000; box-shadow: 0 6px 20px rgba(255,102,0,0.4); }
+        .withdraw-btn { background: linear-gradient(45deg, #00c853, #00e676); color: #000; box-shadow: 0 6px 20px rgba(0,200,83,0.3); }
+        .offers-modal-btn { background: linear-gradient(45deg, #aa00ff, #ff0077); color: #fff; box-shadow: 0 6px 20px rgba(170,0,255,0.3); width: 100%; }
+        .action-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .action-btn:disabled { background: #333 !important; color: #777 !important; box-shadow: none !important; cursor: not-allowed; transform: none !important; }
 
         /* রেজাল্ট বক্স */
-        .result { margin-top: 20px; font-size: 20px; font-weight: bold; min-height: 30px; text-align: center; }
-        .win { color: #00ff66; text-shadow: 0 0 15px rgba(0,255,102,0.5); }
-        .lose { color: #ff3366; text-shadow: 0 0 15px rgba(255,51,102,0.5); }
+        .result { margin-top: 15px; font-size: 18px; font-weight: bold; min-height: 35px; text-align: center; padding: 0 10px; }
+        .win { color: #00ff66; text-shadow: 0 0 20px rgba(0,255,102,0.6); }
+        .lose { color: #ff3366; text-shadow: 0 0 20px rgba(255,51,102,0.6); }
 
-        /* উইথড্র পপ-আপ (Modal) */
+        /* পপ-আপ মডাল */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); z-index: 100; justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(8px);
         }
         .modal-content {
-            background: #15002a; padding: 25px; border-radius: 20px; width: 85%; max-width: 340px;
-            border: 2px solid #00c853; text-align: center; box-shadow: 0 0 25px rgba(0,200,83,0.3);
+            background: linear-gradient(135deg, #1f023f, #0d011d); padding: 25px; border-radius: 25px; width: 90%; max-width: 360px;
+            border: 2px solid #ffd700; text-align: center; box-shadow: 0 0 35px rgba(255,215,0,0.25);
+            animation: slideUp 0.3s ease-out;
         }
-        .modal h3 { color: #00c853; margin-bottom: 15px; }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .modal h3 { color: #ffd700; margin-bottom: 15px; font-size: 19px; }
         .modal select, .modal input {
-            width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px;
-            border: 1px solid #444; background: #000; color: #fff; font-size: 15px; outline: none;
+            width: 100%; padding: 12px; margin: 10px 0; border-radius: 10px;
+            border: 1px solid rgba(255,215,0,0.3); background: #000; color: #fff; font-size: 16px; outline: none; text-align: center;
         }
-        .modal select:focus, .modal input:focus { border-color: #00c853; }
-        .modal-btns { display: flex; gap: 10px; margin-top: 15px; }
-        .modal-box-btn { flex: 1; padding: 10px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .confirm-w { background: #00c853; color: #000; }
-        .cancel-w { background: #d50000; color: #fff; }
+        
+        /* চিপস বাটন */
+        .chip-group { display: flex; gap: 8px; justify-content: center; margin: 5px 0 12px 0; flex-wrap: wrap; }
+        .chip-btn { background: rgba(255,215,0,0.1); border: 1px solid #ffd700; color: #ffd700; padding: 6px 12px; border-radius: 15px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .chip-btn:hover { background: #ffd700; color: #000; }
+
+        .modal-btns { display: flex; gap: 12px; margin-top: 15px; }
+        .modal-box-btn { flex: 1; padding: 12px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 14px; }
+        .confirm-w { background: linear-gradient(45deg, #00c853, #00e676); color: #000; }
+        .cancel-w { background: linear-gradient(45deg, #d50000, #ff1744); color: #fff; }
+
+        /* অফার কার্ড স্টাইল */
+        .offer-card {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 15px; padding: 12px; margin: 12px 0; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .offer-info { text-align: left; }
+        .offer-title { font-weight: bold; font-size: 14px; color: #fff; }
+        .offer-reward { font-size: 12px; color: #ffd700; font-weight: bold; }
+        .offer-btn {
+            background: linear-gradient(45deg, #ffd700, #ffaa00); color: #000;
+            border: none; padding: 7px 15px; font-size: 12px; font-weight: bold;
+            border-radius: 15px; cursor: pointer; min-width: 85px;
+        }
+        .offer-btn:disabled { background: #444 !important; color: #aaa !important; cursor: not-allowed; }
     </style>
 </head>
 <body>
@@ -176,41 +218,73 @@
     <!-- টপ ড্যাশবোর্ড -->
     <div class="header-bar">
         <div class="logo">🎰 PRO SPINNER</div>
-        <div class="coin-box">🪙 <span id="coinDisplay">500</span></div>
+        <div class="coin-box">🪙 <span id="coinDisplay">0.00</span></div>
     </div>
 
     <div class="game-container">
         <div class="pointer"></div>
         <div class="wheel-outer">
             <div class="wheel" id="wheel">
-                <!-- স্লাইসের টেক্সট ও ডিজাইন (রং অনুযায়ী গুছানো) -->
-                <div class="slice s1"><span> (x0)</span></div>
-                <div class="slice s2"><span> (x2)</span></div>
-                <div class="slice s3"><span> (x5)</span></div>
+                <div class="slice s1"><span>(x0)</span></div>
+                <div class="slice s2"><span>(x0.5)</span></div>
+                <div class="slice s3"><span>(x5)</span></div>
                 <div class="slice s4"><span>(x0)</span></div>
-                <div class="slice s5"><span>(x10)</span></div>
-                <div class="slice s6"><span>(x1.5)</span></div>
+                <div class="slice s5"><span>(x2)</span></div>
+                <div class="slice s6"><span>(x1)</span></div>
             </div>
             <div class="center-pin"></div>
         </div>
 
-        <!-- বেট সিস্টেম -->
-        <div class="bet-container">
-            <button class="bet-btn" onclick="adjustBet(-10)">-</button>
-            <div>BET: 🪙<span id="betDisplay">20</span></div>
-            <button class="bet-btn" onclick="adjustBet(10)">+</button>
+        <!-- প্রফেশনাল বেট ট্রিগার বক্স -->
+        <div class="bet-trigger-box" onclick="openBetModal()">
+            🎰 BET: 🪙<span id="betDisplay">20.00</span>
+        </div>
+
+        <!-- হোম স্ক্রিন ডেইলি বোনাস -->
+        <div class="home-daily-box">
+            <div class="daily-text">
+                <div class="daily-title">ডেইলি বোনাস</div>
+                <div class="daily-reward-val">🪙 +২০ টাকা সম্পূর্ণ ফ্রি</div>
+            </div>
+            <button class="home-claim-btn" id="dailyClaimBtn" onclick="claimDailyReward()">ক্লেম</button>
         </div>
 
         <!-- বাটনসমূহ -->
         <div class="btn-group">
-            <button class="action-btn spin-btn" id="spinBtn" onclick="spinWheel()">SPIN</button>
-            <button class="action-btn withdraw-btn" id="withdrawBtn" onclick="openModal()">টাকা তুলুন</button>
+            <div class="row-btns">
+                <button class="action-btn spin-btn" id="spinBtn" onclick="spinWheel()">SPIN</button>
+                <button class="action-btn withdraw-btn" id="withdrawBtn" onclick="openWithdrawModal()">টাকা তুলুন</button>
+            </div>
+            <button class="action-btn offers-modal-btn" id="offersModalBtn" onclick="openOffersModal()">🎁 বোনাস অফারস উইন্ডো</button>
         </div>
         
-        <div class="result" id="resultBox">আপনার বেট ধরুন এবং স্পিন করুন!</div>
+        <div class="result" id="resultBox">ডেইলি বোনাস ক্লেম করুন এবং স্পিন খেলুন!</div>
     </div>
 
-    <!-- টাকা তোলার পপ-আপ ফর্ম -->
+    <!-- বেট মডাল -->
+    <div class="modal" id="betModal">
+        <div class="modal-content" style="border-color: #ffd700;">
+            <h3>🎰 বেট সেট করুন (Set Your Bet)</h3>
+            <p style="font-size: 12px; color: #ccc;">সর্বনিম্ন ০.৫০ টাকা থেকে সর্বোচ্চ ৫০০০ টাকা</p>
+            
+            <input type="number" step="0.5" id="customBetInput" placeholder="বেটের পরিমাণ লিখুন">
+            
+            <div class="chip-group">
+                <button class="chip-btn" onclick="setPresetBet(10)">+১০</button>
+                <button class="chip-btn" onclick="setPresetBet(50)">+৫০</button>
+                <button class="chip-btn" onclick="setPresetBet(100)">+১০০</button>
+                <button class="chip-btn" onclick="setPresetBet(500)">+৫০০</button>
+                <button class="chip-btn" onclick="setPresetBet('MAX')">MAX ALL</button>
+            </div>
+            
+            <div class="modal-btns">
+                <button class="modal-box-btn confirm-w" onclick="confirmCustomBet()">কনফার্ম বেট</button>
+                <button class="modal-box-btn cancel-w" onclick="closeBetModal()">বাতিল</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- টাকা তোলার ফর্ম -->
     <div class="modal" id="withdrawModal">
         <div class="modal-content">
             <h3>💰 টাকা উত্তোলন (Withdraw)</h3>
@@ -227,7 +301,43 @@
             
             <div class="modal-btns">
                 <button class="modal-box-btn confirm-w" onclick="processWithdraw()">কনফার্ম</button>
-                <button class="modal-box-btn cancel-w" onclick="closeModal()">বাতিল</button>
+                <button class="modal-box-btn cancel-w" onclick="closeWithdrawModal()">বাতিল</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ৩টি ভিডিও অফারের মডাল উইন্ডো -->
+    <div class="modal" id="offersModal">
+        <div class="modal-content" style="border-color: #aa00ff; max-width: 380px;">
+            <h3>💎 স্পেশাল বোনাস অফারস</h3>
+            <p style="font-size: 13px; color: #ccc; margin-bottom: 10px;">অ্যাড দেখে ফ্রিতে একাউন্ট রিচার্জ করুন</p>
+            
+            <div class="offer-card">
+                <div class="offer-info">
+                    <div class="offer-title">প্রিমিয়াম অফার ১</div>
+                    <div class="offer-reward">🪙 +৫০ টাকা (অ্যাড দেখুন)</div>
+                </div>
+                <button class="offer-btn" id="offer1Btn" onclick="watchOfferAd(1)">অ্যাড দেখুন</button>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-info">
+                    <div class="offer-title">প্রিমিয়াম অফার ২</div>
+                    <div class="offer-reward">🪙 +৫০ টাকা (অ্যাড দেখুন)</div>
+                </div>
+                <button class="offer-btn" id="offer2Btn" onclick="watchOfferAd(2)">অ্যাড দেখুন</button>
+            </div>
+
+            <div class="offer-card">
+                <div class="offer-info">
+                    <div class="offer-title">প্রিমিয়াম অফার ৩</div>
+                    <div class="offer-reward">🪙 +৫০ টাকা (অ্যাড দেখুন)</div>
+                </div>
+                <button class="offer-btn" id="offer3Btn" onclick="watchOfferAd(3)">অ্যাড দেখুন</button>
+            </div>
+
+            <div class="modal-btns">
+                <button class="modal-box-btn cancel-w" style="background: #333;" onclick="closeOffersModal()">বন্ধ করুন</button>
             </div>
         </div>
     </div>
@@ -236,48 +346,93 @@
         const wheel = document.getElementById('wheel');
         const spinBtn = document.getElementById('spinBtn');
         const withdrawBtn = document.getElementById('withdrawBtn');
+        const offersModalBtn = document.getElementById('offersModalBtn');
+        const dailyClaimBtn = document.getElementById('dailyClaimBtn');
         const coinDisplay = document.getElementById('coinDisplay');
         const betDisplay = document.getElementById('betDisplay');
         const resultBox = document.getElementById('resultBox');
-        const modal = document.getElementById('withdrawModal');
+        
+        const betModal = document.getElementById('betModal');
+        const withdrawModal = document.getElementById('withdrawModal');
+        const offersModal = document.getElementById('offersModal');
+        const customBetInput = document.getElementById('customBetInput');
 
-        // স্লাইসের গুণিতক (Multipliers) এবং রং নাম্বারিং
-        // ক্যাসিনো রুলস অনুযায়ী কাউন্টার ক্লক-ওয়াইজ হিসাব করা হয়েছে
         const slicesInfo = [
             { text: "🔴 লাল ঘর! কোনো কয়েন পাননি।", multiplier: 0, type: "lose" },
-            { text: "🟣 বেগুনি ঘর! ১.৫ গুণ বোনাস!", multiplier: 1.5, type: "win" },
-            { text: "🟢 সবুজ ঘর! ১০ গুণ জ্যান্ত জ্যাকপট!!", multiplier: 10, type: "win" },
-            { text: "⚪ সাদা ঘর! কপাল খারাপ, ০ গুণ।", multiplier: 0, type: "lose" },
-            { text: "🟡 হলুদ ঘর! ৫ গুণ কয়েন লাভ!", multiplier: 5, type: "win" },
-            { text: "🔵 নীল ঘর! ডাবল (২ গুণ) রিওয়ার্ড!", multiplier: 2, type: "win" }
+            { text: "🔵 নীল ঘর! সমপরিমাণ (১ গুণ) ব্যাক!", multiplier: 1, type: "win" },
+            { text: "🟡 হলুদ ঘর! ২ গুণ কয়েন লাভ!", multiplier: 2, type: "win" },
+            { text: "⚪ ধূসর ঘর! কপাল খারাপ, ০ গুণ।", multiplier: 0, type: "lose" },
+            { text: "🟢 সবুজ ঘর! ৫ গুণ বিগ জ্যান্ত জ্যাকপট!!", multiplier: 5, type: "win" },
+            { text: "🟣 বেগুনি ঘর! ০.৫ গুণ রিফান্ড পেলেন।", multiplier: 0.5, type: "win" }
         ];
         
         let currentRotation = 0;
-        let currentBet = 20;
+        let currentBet = 20.00;
         
-        // ডেটা আজীবনের জন্য সেভ রাখার LocalStorage মেকানিজম (ডিফল্ট ৫০০ কয়েন দেওয়া হলো)
-        let coins = parseInt(localStorage.getItem('casino_user_coins')) || 500;
-        coinDisplay.innerText = coins;
+        let coins = parseFloat(localStorage.getItem('casino_user_coins'));
+        if (isNaN(coins)) {
+            coins = 0.00; 
+        }
+        coinDisplay.innerText = coins.toFixed(2);
+        betDisplay.innerText = currentBet.toFixed(2);
 
-        // বেট কমানো বাড়ানোর ফাংশন
-        function adjustBet(val) {
-            currentBet += val;
-            if (currentBet < 10) currentBet = 10; // সর্বনিম্ন বেট ১০
-            if (currentBet > 100) currentBet = 100; // সর্বোচ্চ বেট ১০০
-            betDisplay.innerText = currentBet;
+        window.onload = function() {
+            checkDailyRewardStatus();
+            updateOfferTimerDisplay(1);
+            updateOfferTimerDisplay(2);
+            updateOfferTimerDisplay(3);
+        };
+
+        function openBetModal() { 
+            customBetInput.value = currentBet;
+            betModal.style.display = "flex"; 
+        }
+        function closeBetModal() { betModal.style.display = "none"; }
+        
+        function setPresetBet(val) {
+            if (val === 'MAX') {
+                customBetInput.value = coins > 5000 ? 5000 : (coins < 0.5 ? 0.5 : coins);
+            } else {
+                let currentVal = parseFloat(customBetInput.value) || 0;
+                customBetInput.value = currentVal + val;
+            }
         }
 
-        // স্পিন করার মেইন কোড
+        function confirmCustomBet() {
+            let parsedBet = parseFloat(customBetInput.value);
+            if (isNaN(parsedBet) || parsedBet < 0.5) {
+                alert("❌ সর্বনিম্ন বেট ০.৫০ টাকা!");
+                return;
+            }
+            if (parsedBet > 5000) {
+                alert("❌ সর্বোচ্চ বেট ৫০০০ টাকা পর্যন্ত সীমাবদ্ধ!");
+                return;
+            }
+            currentBet = parsedBet;
+            betDisplay.innerText = currentBet.toFixed(2);
+            closeBetModal();
+        }
+
+        // নতুন জোন আইডি ১১০৮৬৪৭৮ সহ ইন-অ্যাপ ইন্টারস্টিশিয়াল সেটআপ
         function spinWheel() {
+            if (typeof show_11086478 === 'function') {
+                show_11086478({
+                  type: 'inApp',
+                  inAppSettings: { frequency: 2, capping: 0.1, interval: 30, timeout: 5, everyPage: false }
+                });
+            }
+
             if (coins < currentBet) {
                 resultBox.className = "result lose";
-                resultBox.innerText = "❌ পর্যাপ্ত কয়েন নেই! বেট কমান অথবা কয়েন যোগ করুন।";
+                resultBox.innerText = "❌ পর্যাপ্ত কয়েন নেই! ডেইলি বোনাস নিন বা অফার দেখুন।";
                 return;
             }
 
-            // বাটন লক ও বেট কেটে নেওয়া
             spinBtn.disabled = true;
             withdrawBtn.disabled = true;
+            offersModalBtn.disabled = true;
+            dailyClaimBtn.disabled = true;
+            
             coins -= currentBet;
             updateCoins();
 
@@ -285,58 +440,131 @@
             resultBox.style.color = "#ffd700";
             resultBox.innerText = "🎰 চাকা ঘুরছে... ভাগ্য নির্ধারণ হচ্ছে...";
 
-            // চাকা ঘোরানোর ডিগ্রি জেনারেট (৫ চক্কর + এক্সট্রা)
-            const randomDegree = Math.floor(Math.random() * 3600);
-            currentRotation += 180000 + randomDegree; 
-            wheel.style.transform = `rotate(${currentRotation}deg)`;
+            const randomDegree = Math.floor(Math.random() * 360);
+            currentRotation += 2880 + randomDegree; 
+            wheel.style.transform = `rotate(-${currentRotation}deg)`; 
 
-            // ৪.৫ সেকেন্ড পর কাঁটার নিখুঁত রেজাল্ট
             setTimeout(() => {
                 spinBtn.disabled = false;
                 withdrawBtn.disabled = false;
+                offersModalBtn.disabled = false;
+                checkDailyRewardStatus();
 
-                // কাঁটা কোন স্লাইসে পড়লো তার ক্যালকুলেশন (৩৬০ / ৬ স্লাইস = ৬০ ডিগ্রি প্রতি স্লাইস)
-                const actualDegree = (currentRotation % 360);
-                const sliceIndex = Math.floor(actualDegree / 60); 
+                const finalMatchedDegree = (currentRotation % 360);
+                const sliceIndex = Math.floor(finalMatchedDegree / 60); 
                 
                 const result = slicesInfo[sliceIndex];
-                const winAmount = Math.floor(currentBet * result.multiplier);
+                const winAmount = currentBet * result.multiplier;
                 
                 coins += winAmount;
                 updateCoins();
 
                 resultBox.className = `result ${result.type}`;
                 if(winAmount > 0) {
-                    resultBox.innerText = `${result.text} (+🪙${winAmount})`;
+                    resultBox.innerText = `${result.text} (+🪙${winAmount.toFixed(2)})`;
                 } else {
                     resultBox.innerText = result.text;
                 }
                 
-            }, 4500);
+            }, 5000);
         }
 
-        // কয়েন আপডেট ও সেভ করার ফাংশন
         function updateCoins() {
-            coinDisplay.innerText = coins;
+            coinDisplay.innerText = coins.toFixed(2);
             localStorage.setItem('casino_user_coins', coins);
         }
 
-        // উইথড্র পপ-আপ কন্ট্রোল
-        function openModal() { modal.style.display = "flex"; }
-        function closeModal() { modal.style.display = "none"; }
+        function openWithdrawModal() { withdrawModal.style.display = "flex"; }
+        function closeWithdrawModal() { withdrawModal.style.display = "none"; }
+        function openOffersModal() { offersModal.style.display = "flex"; }
+        function closeOffersModal() { offersModal.style.display = "none"; }
 
-        // টাকা তোলার আসল প্রসেস
+        // হোম স্ক্রিন ডেইলি ক্লেম
+        function claimDailyReward() {
+            const lastClaim = localStorage.getItem('casino_daily_claim');
+            const today = new Date().toDateString();
+
+            if (lastClaim === today) {
+                alert("❌ আপনি আজকের ডেইলি বোনাস ইতিমধ্যেই ক্লেম করেছেন!");
+                return;
+            }
+
+            coins += 20.00;
+            updateCoins();
+            localStorage.setItem('casino_daily_claim', today);
+            dailyClaimBtn.disabled = true;
+            dailyClaimBtn.innerText = "ক্লেমড্";
+            
+            resultBox.className = "result win";
+            resultBox.innerText = "🎉 ডেইলি বোনাস থেকে ফ্রিতে ২০ টাকা একাউন্টে যোগ হয়েছে!";
+            alert("🎉 অভিনন্দন! ফ্রিতে ২০ টাকা সফলভাবে যোগ হয়েছে।");
+        }
+
+        function checkDailyRewardStatus() {
+            const lastClaim = localStorage.getItem('casino_daily_claim');
+            const today = new Date().toDateString();
+            if (lastClaim === today) {
+                dailyClaimBtn.disabled = true;
+                dailyClaimBtn.innerText = "ক্লেমড্";
+            } else {
+                dailyClaimBtn.disabled = false;
+                dailyClaimBtn.innerText = "ক্লেম";
+            }
+        }
+
+        // ৩টি স্পেশাল অফার - নতুন জোন আইডি ১১০৮৬৪৭৮ 'pop' রিওয়ার্ডেড ফরম্যাট দিয়ে আপডেট করা হলো
+        function watchOfferAd(offerNum) {
+            if (typeof show_11086478 === 'function') {
+                show_11086478('pop').then(() => { 
+                    // ইউজার সম্পূর্ণ অ্যাড দেখলে সাকসেস কোড এক্সিকিউট হবে
+                    const nextAvailableTime = Date.now() + (30 * 60 * 1000); 
+                    localStorage.setItem(`casino_offer_${offerNum}_time`, nextAvailableTime);
+                    
+                    coins += 50.00;
+                    updateCoins();
+                    updateOfferTimerDisplay(offerNum);
+                    
+                    alert(`🎉 অভিনন্দন! অফার ${offerNum} থেকে ৫০ টাকা বোনাস সফলভাবে যোগ হয়েছে। এটি ৩০ মিনিট পর আবার পাবেন।`);
+                }).catch(e => { 
+                    // মাঝপথে কাটলে বা এরর হলে রিওয়ার্ড পাবে না
+                    alert("❌ অ্যাড সম্পূর্ণ দেখা হয়নি অথবা লোড হতে সমস্যা হয়েছে!");
+                });
+            } else {
+                alert("❌ অ্যাড নেটওয়ার্ক রেডি নেই, দয়া করে একটু পর চেষ্টা করুন!");
+            }
+        }
+
+        function updateOfferTimerDisplay(offerNum) {
+            const btn = document.getElementById(`offer${offerNum}Btn`);
+            const lockedUntil = localStorage.getItem(`casino_offer_${offerNum}_time`);
+            
+            if (!lockedUntil) return;
+
+            const interval = setInterval(() => {
+                const timeLeft = lockedUntil - Date.now();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    btn.disabled = false;
+                    btn.innerText = "অ্যাড দেখুন";
+                    localStorage.removeItem(`casino_offer_${offerNum}_time`);
+                } else {
+                    btn.disabled = true;
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                    btn.innerText = `${minutes}মি: ${seconds}সে`;
+                }
+            }, 1000);
+        }
+
+        // টাকা উইথড্র
         function processWithdraw() {
             const method = document.getElementById('method').value;
             const number = document.getElementById('accountNumber').value;
-            const amount = parseInt(document.getElementById('amount').value);
+            const amount = parseFloat(document.getElementById('amount').value);
 
-            if (!number || !amount) {
+            if (!number || isNaN(amount) || amount <= 0) {
                 alert("দয়া করে সব তথ্য সঠিকভাবে পূরণ করুন!");
-                return;
-            }
-            if (amount <= 0) {
-                alert("বৈধ টাকার পরিমাণ লিখুন!");
                 return;
             }
             if (amount > coins) {
@@ -344,20 +572,17 @@
                 return;
             }
 
-            // একাউন্ট থেকে কয়েন (টাকা) ডিলিট/মাইনাস করে দেওয়া
             coins -= amount;
             updateCoins();
+            closeWithdrawModal();
             
-            closeModal();
-            
-            // সাকসেস মেসেজ ও ইনপুট ফিল্ড ক্লিয়ার করা
             resultBox.className = "result win";
-            resultBox.innerText = `✅ সফলভাবে ${amount} টাকা ${method}-এ উত্তোলনের রিকোয়েস্ট পাঠানো হয়েছে।`;
+            resultBox.innerText = `✅ সফলভাবে ${amount.toFixed(2)} টাকা ${method}-এ উত্তোলনের রিকোয়েস্ট পাঠানো হয়েছে।`;
             
             document.getElementById('accountNumber').value = "";
             document.getElementById('amount').value = "";
             
-            alert(`🎉 উইথড্র সফল!\n${amount} টাকা আপনার ${number} (${method}) নাম্বারে প্রসেস করা হচ্ছে। ব্যালেন্স থেকে কয়েন কেটে নেওয়া হয়েছে।`);
+            alert(`🎉 উইথড্র সফল!\n${amount.toFixed(2)} টাকা আপনার ${number} (${method}) নাম্বারে পাঠানো হচ্ছে।`);
         }
     </script>
 </body>
